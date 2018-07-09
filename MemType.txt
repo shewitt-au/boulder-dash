@@ -1173,7 +1173,6 @@ $7930 ""
 $7936 "Firefly"
 $794e ""
 $7971 ""
-$7999 v "In-game voice 3 is used only for the diamond-quota-reached and entry-box-explode sound"
 $7a86 ""
 $7ac6 "A = 0 to 24 in multiples of 8."
 $7af7 v'''
