@@ -898,7 +898,7 @@ $7080 v '''
 		Pulse width. N/A
 	$81:
 		Control register
-		ADSR cycle, Noise waveform
+		Noise waveform, ADSR cycle
 	$19:
 		Attack 8 ms, Decay 750 ms
 	$01:
@@ -1174,6 +1174,8 @@ $7936 "Firefly"
 $794e ""
 $7997 >"The target of this branch may as well be $79d2"
 $79a4 >"Note that not all SFX use this enable flag"
+$79b8 >"Keep on trying till we get a frequency in range"
+$79c7 >"Branch always taken"
 $7a86 ""
 $7ac6 "A = 0 to 24 in multiples of 8."
 $7af7 v'''
@@ -2085,17 +2087,21 @@ $7958  WhiteFlash
 $7971  SoundFX
 $797a	SoundFX_Paused
 $797b	SoundFX_NotPaused
-$7983	SoundFX_InitiateDiamondQuotaReachedOrEntryBoxExplode
+$797f	SoundFX_DiamondQuotaReachedOrEntryBoxExplode_Check
+$7983	SoundFX_DiamondQuotaReachedOrEntryBoxExplode_Start
 $7995	SoundFX_DiamondQuotaReachedOrEntryBoxExplode_InProgress
 $7999	SoundFX_DiamondQuotaReachedOrEntryBoxExplode_Stop
-$7a86  RedefineMagicWallCharsToNormalWall
-$7a9b  MagicWallFX
-$7aa1     MagicWallFX__Sound
-$7ac2     MagicWallFX__Animate
-$7ac9     MagicWallFX__AnimateLoop
-$7adf     HandleMagicWall
-$7af7     Animate
-$7b07     HandleMagicWallState
+$79a8	SoundFX_Amoeba_Check
+$79ac	SoundFX_Amoeba_Tick
+$79c9	SoundFX_MagiWall_Check
+$7a86	RedefineMagicWallCharsToNormalWall
+$7a9b	MagicWallFX
+$7aa1	MagicWallFX__Sound
+$7ac2	MagicWallFX__Animate
+$7ac9	MagicWallFX__AnimateLoop
+$7adf	HandleMagicWall
+$7af7	Animate
+$7b07	HandleMagicWallState
 $7b2b  GameIRQActions
 $7b30     __GameIRQActions__InBody
 $7b4a     __GameIRQActions__FlipBuffers
