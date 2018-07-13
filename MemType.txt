@@ -2469,7 +2469,7 @@ $8986     _InitBlankRestOfScreen
 $89a1     _InitCopyCharsAndTheme
 }
 
-memmap main
+memmap
 {
 	$5000-$53af bitmap
 	{
