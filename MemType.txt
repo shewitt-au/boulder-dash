@@ -674,14 +674,22 @@ $69e8 v'''
 	m-i-c-r-o-..f-u-n-.*-.m-i-c-r-o-..f-u-n-
 	........................................
 '''
+
+$6ad0 ""
+$6ad0 '''
+	Generate a "random" number based on CIA timers (and the state of the C flag).
+	The operation is pretty self explanatory. About the only point of interest is
+	the addition without regard to state of the carry flag. 
+'''
+$6ad9 >"The C flag has a say in things! A bit of extra entropy is sometimes a good thing."
+
+$6ae3 ""
 $6ae3 '''
 	A: Colour to set
 	Y: Start offset.
 	The portion of the first line not covered by Y is set to MCM white (brown non-MCM).
 '''
 $6ae4 "Make first line MCM white (brown non-MCM)."
-$6aee "Low and high bytes of colou RAM."
-$6af6 ""
 $6b04 ""
 $6b16 '''
 	Set the text for the top line. Sniffs the buffer and
@@ -1901,25 +1909,27 @@ $2422		BufferedLevel_Param2
 $2423		BufferedLevel_Param3
 $2424		BufferedLevel_Param4
 $2425		BufferedLevel_Param5
-$3000-$30ff CopiedMusicData
-$4003     ExpandedLattice
-$4dc3     ExpandedLattice__END_PLUS_ONE__
-$53b0-$53d9     ExpandedLatticeOffsetAdjustTable
-$53da-$5405     ExpandedLatticeLineAddressTable
-$5406-$5805     AnimatedCharData
-$5806     LevelOffsetArray
+$3000-$30ff	CopiedMusicData
+$4003		ExpandedLattice
+$4dc3		ExpandedLattice__END_PLUS_ONE__
+$53b0-$53d9	ExpandedLatticeOffsetAdjustTable
+$53da-$5405	ExpandedLatticeLineAddressTable
+$5406-$5805	AnimatedCharData
+$5806		LevelOffsetArray
 $5ee8-$5f27	ObjCodeFromScannedThisTickCodeTable
 $5fe8-$60e7	MusicData
-$63e8     RockfordAnimationChars
-$66e8     Top2LinesAndBoulderDashLogo
-$67e8     Top2LinesAndBoulderDashLogo_pt2
-$68e8     Top2LinesAndBoulderDashLogo_pt3
-$69e0     Top2LinesAndBoulderDashLogo__Junk
-$69e8     LicenseText
-$6ad0  TimeBasedRandomNumber
-$6ae3  SetupColourRam
-$6ae8     SetupColourRam__MarqueeLoop
-$6af9     SetupColourRam__BodyLoop
+$63e8	RockfordAnimationChars
+$66e8	Top2LinesAndBoulderDashLogo
+$67e8	Top2LinesAndBoulderDashLogo_pt2
+$68e8	Top2LinesAndBoulderDashLogo_pt3
+$69e0	Top2LinesAndBoulderDashLogo__Junk
+$69e8	LicenseText
+$6ad0	TimeBasedRandomNumber
+$6ae3	SetupColourRam
+$6ae8	_MarqueeLoop
+$6aee	[<] C64_ColourRam
+$6af2	[>] C64_ColourRam
+$6af9	_BodyLoop
 $6b04  BackupTopLine
 $6b16  SetTopLineText
 $6b5d  ReadJoystickDirectionPort1
