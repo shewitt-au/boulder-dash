@@ -691,15 +691,24 @@ $6ae3 '''
 '''
 $6ae4 "Make first line MCM white (brown non-MCM)."
 $6b04 ""
+$6b04 '''
+	Saves the top line. Nothing exciting except for the fact that only
+	the first character of each pair (most glyphs are two characters wide)
+	is saved to save space.
+'''
+$6b16 ""
 $6b16 '''
 	Set the text for the top line. Sniffs the buffer and
 	colours the text using various dopy heuristics.
-	IN: $46 & $47 points to the text.
-	>1 = White
+	IN: LocalVar ($46 & $47) points to the text.
 '''
-$6b1c ">$3c is left half of diamond character."
-$6b20 ">7 = Yellow"
+$6b16 >"1 = White"
+$6b1c >"$3c is left half of diamond character."
+$6b20 >"7 = Yellow"
+$6b5d ""
 $6b69 ""
+$6b69 "NOTE: multiple entry points!"
+$6b7c ""
 $6b7c v"..by.peter.liepa...."
 $6b90 v"..with.chris.grey..."
 $6ba4 v"1.player..1.joystick"
@@ -1322,7 +1331,7 @@ $802e ""
 $8038 '''
 	Without this the timer never display 000.
 	It sets the first character of the third digit to zero.
-	Only the first character need be set because .BackupTopLine
+	Only the first character need be set because BackupTopLine
 	only looks at the first and .SetTopLineText takes a string.
 '''
 $8059 "Shut down magic walls."
@@ -1932,10 +1941,12 @@ $6af2	[>] C64_ColourRam
 $6af9	_BodyLoop
 $6b04  BackupTopLine
 $6b16  SetTopLineText
-$6b5d  ReadJoystickDirectionPort1
-$6b63  ReadJoystickDirectionPort2
-$6b69  ReadFireButtonCurrentPlayer
-$6b6b  ReadFireButtonPlayerInA
+$6b5d	ReadJoystickDirectionPort1
+$6b63	ReadJoystickDirectionPort2
+$6b69	ReadFireButtonCurrentPlayer
+$6b6b	ReadFireButtonPlayerInA
+$6b74	ReadFireButtonPort1
+$6b77	_StoreFireButtonBit
 $6b7c     Text_ByPeterLiepa
 $6b90     Text__WithChrisGrey
 $6ba4     F1Text__Line4
@@ -2386,8 +2397,6 @@ $5ea8		DemoMoveData
 $5f28		BaseCharNoForObjectTable
 $5f68-$5f69 	ObjHandlerVectorTable
 $60e8-$63e7	GameCharData
-$6b74     ReadFireButtonPort1
-$6b77     ReadFireButton__StoreFireButtonBit
 $6cb6  SetCaveCellAndScreenToObject
 $6ced  PseudoRandom
 $6da5  ExplosionSIDVoiceTable
