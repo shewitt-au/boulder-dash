@@ -6,10 +6,38 @@ datasource
 
 annotate {
 
-$53b0 '''
+$53b0 v'''
     0  : Offset
     1&2: Adjust 
-    
+
+    WorldCurrentCellPtr points to the NW cell and the cell in consideration is at
+    'C' (that's why you see a lot of offsets of $29 in the code). 
+    ---------------------
+    |NW:$00|N:$01|NE:$02|
+    |------+-----+------|
+    | W:$28|C:$29| E:$2a|
+    |------+-----+------|
+    |SW:$50|S:$51|SE:$52|
+    |======+=====+======|
+    |   $78|  $79|   $7a|
+    ---------------------
+
+    InflatedWorldCurrentCellPtr points to the cell in consideration ('C'), since
+    each cell in the world is 2x2 characters in the inflated world the offsets
+    are as follows (I'm not sure what the extra bits hanging off the sides are
+    for yet)
+            ------------------------
+            |NW:-162|N:-160|NE:-158|
+     -------+-------+------|-------|-------
+    |   -4  | W:-2  |C: 0  | E:+2  |   +4  |
+     -------+-------+------|-------|-------
+            |SW:+158|S:+160|SE:+162|
+            |=======+======+=======|
+            |   +318|  +320|   +322|
+            ------------------------
+
+    This table translates offsets as specified in the first scheme to ones in the second.
+
     Offset: 0($00)  Adjust: -162
     Offset: 1($01)  Adjust: -160
     Offset: 2($02)  Adjust: -158
