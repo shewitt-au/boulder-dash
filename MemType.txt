@@ -22,10 +22,10 @@ $53b0 v'''
     |   $78|  $79|   $7a|
     ---------------------
 
-    InflatedWorldCurrentCellPtr points to the cell in consideration ('C'), since
+    InflatedWorldCurrentCellPtr points to the cell in consideration ('C'). Since
     each cell in the world is 2x2 characters in the inflated world the offsets
     are as follows (I'm not sure what the extra bits hanging off the sides are
-    for yet)
+    for yet).
             ------------------------
             |NW:-162|N:-160|NE:-158|
      -------+-------+------|-------|-------

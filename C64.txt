@@ -77,7 +77,8 @@ $d41a Sid_GamePaddle2
 $d41b Sid_Osc3Output
 $d41c Sid_Env3Output
 
-$d800 C64_ColourRam
+$D800-$DBE7 C64_ColourRam
+$DBE8-$DBFF C64_ColourRam_Unused
 
 $dc00 Cia1_DataA
 $dc01 Cia1_DataB
