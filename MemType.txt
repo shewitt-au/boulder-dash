@@ -10,7 +10,7 @@ $53b0 v'''
     0  : Offset
     1&2: Adjust 
 
-    WorldCurrentCellPtr points to the NW cell and the cell in consideration is at
+    CaveCurrentCellPtr points to the NW cell and the cell in consideration is at
     'C' (that's why you see a lot of offsets of $29 in the code). 
     ---------------------
     |NW:$00|N:$01|NE:$02|
@@ -22,8 +22,8 @@ $53b0 v'''
     |   $78|  $79|   $7a|
     ---------------------
 
-    InflatedWorldCurrentCellPtr points to the cell in consideration ('C'). Since
-    each cell in the world is 2x2 characters in the inflated world the offsets
+    InflatedCaveCurrentCellPtr points to the cell in consideration ('C'). Since
+    each cell in the cave is 2x2 characters in the inflated cave the offsets
     are as follows (I'm not sure what the extra bits hanging off the sides are
     for yet).
             ------------------------
@@ -53,7 +53,7 @@ $53b0 v'''
     Offset: 121($79)    Adjust: 320
     Offset: 122($7a)    Adjust: 322
 '''
-$53da v"Inflated World: $4003 - $4dc2"
+$53da v"Inflated Cave: $4003 - $4dc2"
 $582e '''
     CaveNumber
     MagicWallMillingTimeOrAmoeba3PercentMax
@@ -763,29 +763,36 @@ $6c80 '''
     ---------------------------------------------------------------
     INPUTS:
     ObjectTypeForScreenUpdate       $8A         = Object code
-    InflatedWorldOutputOutputPtr    $36 & $37   = Position
+    InflatedCaveOutputOutputPtr    $36 & $37   = Position
     
     NOTES:
-     Call SetInflatedWorldOutputPtr to set InflatedWorldOutputPtr
-     Inflated World: $4003 - $4dc2
+     Call SetInflatedCaveOutputPtr to set InflatedCaveOutputPtr
+     Inflated Cave: $4003 - $4dc2
     ---------------------------------------------------------------
 '''
 $6c9b ""
 $6c9b '''
     ---------------------------------------------
     INPUTS:
-    .InflatedWorldCurrentCellPtr $34 & 35
+    .InflatedCaveCurrentCellPtr $34 & 35
     y = Offset
     OUTPUT:
-    .InflatedWorldOutputPtr $36 & $37
+    .InflatedCaveOutputPtr $36 & $37
     
-    Inflated World: $4003 - $4dc2
+    Inflated Cave: $4003 - $4dc2
     ---------------------------------------------
 '''
+$6cb6 ""
 $6cb6 '''
+    Set a cell in the cave (where the game logic occurs) and the inflated cave
+    (staging area for screen, each cell is presented as 2x2 characters).
+
     A contains the object type and Y the offset from the current position.
-    A is preserved.
+    A is preseCaverved.
 '''
+$6cb8 >"the cave"
+$6cd1 >"the inflated cave"
+$6cd7 ""
 $6ced ""
 $6ced v'''
     .RandSeed1
@@ -817,6 +824,7 @@ $6cfe '''
     .\/RandSeed2
 '''
 $6d0b ""
+$6d16 ""
 $6d16 "Update one cave cell and on screen provided it isn't steel wall."
 $6d18 "Object $07 = steel wall."
 $6d54 "Handler for object $04."
@@ -1014,7 +1022,7 @@ $7311 v'''
 '''
 $7344 ""
 $734e '''
-    Render cell from lattice to Inflated World.
+    Render cell from lattice to Inflated cave.
     Is either cell $05[E] (outbox) or $25[%] (inbox),
     both of which map to (via .BaseCharNoForObjectTable)
     a hollow box.
@@ -1057,7 +1065,7 @@ $74ef v'''
     We only start a scroll if .AnotherFrameCounter is even.
     This is important to keep the scrolling logic in sync with the rest of the IRQ handler.
     (IRQ handler flips buffers on even frames and copies the visible section of the inflated
-    world the the back buffer on odd frames.)
+    cave the the back buffer on odd frames.)
     
     .FineScrollDirY: $40 up, $c0 down.
 '''
@@ -1079,8 +1087,8 @@ $7518 '''
     This setting takes effect in the next frame.
     The previous setting was .YScrollVicCtl1Table[0] ($17), the resting state when not scrolling.
     
-    2) We change .InflatedWorldSubsetPtrH & InflatedWorldSubsetPtrL.
-    Since the Inflated World is copied to the back buffer on odd frames and it then has to be
+    2) We change .InflatedCaveSubsetPtrH & InflatedCaveSubsetPtrL.
+    Since the Inflated Cave is copied to the back buffer on odd frames and it then has to be
     flipped to the front, which happens in even frames, this change will not be seen for a bit.
     This is why we do it at what seems like a strange fine scroll value (not an extreme).
     
@@ -1092,7 +1100,7 @@ $7518 '''
     
     1) .RastInt_vic_control1 = .YScrollVicCtl1Table[2] ($13)
     
-    2) Our caller copies the Inflated World to the back buffer.
+    2) Our caller copies the Inflated Cave to the back buffer.
     The back buffer now reflects the changes made in frame n+0 step 2.
     It is not visible yet however as it has to be flipped to the front.
     
@@ -1141,7 +1149,7 @@ $76c6 ""
 $76cd '''
     IN: ZF, A
     
-    .WorldCurrentCellPtr(???) points to the NW cell ($00).
+    .CaveCurrentCellPtr(???) points to the NW cell ($00).
     The current cell C is at an offset of $29. See table below:
     ---------------------
     |NW:$00|N:$01|NE:$02|
@@ -1175,20 +1183,20 @@ $772f "Take branch below if A>=$2b(43)"
 $7731 "0<=A<=$2a(42)"
 $773a v"$7c is scrolling steel wall."
 $774d '''
-    Pads the Inflated World ($4003 - $4DC2) with 1st steel wall char ($4a).
+    Pads the Inflated Cave ($4003 - $4DC2) with 1st steel wall char ($4a).
     Padded bytes: $4000-4002 (3 bytes) and $4dc3-4ec2 (256 bytes).
 '''
 $7760 "Uncover one random cell on each line, 69 times (no already uncovered checks)."
 $7760 v"Loop 69 times."
 $7764 ""
 $7777 '''
-    .WorldCurrentCellX <= $27(39)
-    A = 39-.WorldCurrentCellX
+    .CaveCurrentCellX <= $27(39)
+    A = 39-.CaveCurrentCellX
 '''
 $777b '''
-    .RandomlyUncoverScreen::OffsetToStartOfNextLine = 40-.WorldCurrentCellX
+    .RandomlyUncoverScreen::OffsetToStartOfNextLine = 40-.CaveCurrentCellX
     
-    Adjust .WorldCurrentCellPtr(Low&High) to point to .WorldCurrentCellX on the line.
+    Adjust .CaveCurrentCellPtr(Low&High) to point to .CaveCurrentCellX on the line.
 '''
 $7788 "Setting the cell to itself like this will make it appear."
 $778f "Move to the start of the next line."
@@ -1783,9 +1791,9 @@ $8b2f ""
 // Symbols
 
 $0002-$0031 __CoverLevel__LineAddressTable
-$0032-$0033 WorldCurrentCellPtr
-$0034-$0035 InflatedWorldCurrentCellPtr
-$0036-$0037 InflatedWorldOutputPtr
+$0032-$0033 CaveCurrentCellPtr
+$0034-$0035 InflatedCaveCurrentCellPtr
+$0036-$0037 InflatedCaveOutputPtr
 $0038-$0039 ObjHandlerVector
 $003a-$003b ExecuteLevelDrawCommands__OutPtr
 $003c-$003d CurrentLevelDataPtr
@@ -1884,7 +1892,7 @@ $00d2       DemoMoveRepeatCount
 $00d3       DemoMoveDataIndex
 $00d4       ExitDemoModeFlag
 $00d5       InitGameState__DoOneTimeInit
-$00d6-$00d7 InflatedWorldSubset
+$00d6-$00d7 InflatedCaveSubset
 $00d8       SFXTrigger_DiamondQuotaReachedOrEntryBoxExplode
 $00d9       SFXTimer_DiamondQuotaReachedOrEntryBoxExplode
 $00da       ObjTypeDuringUnpack
@@ -1955,10 +1963,10 @@ $2423       BufferedLevel_Param3
 $2424       BufferedLevel_Param4
 $2425       BufferedLevel_Param5
 $3000-$30ff CopiedMusicData
-$4003       InflatedWorld
-$4dc3       InflatedWorld__END_PLUS_ONE__
-$53b0-$53d9 InflatedWorldOffsetAdjustTable
-$53da-$5405 InflatedWorldLineAddressTable
+$4003       InflatedCave
+$4dc3       InflatedCave__END_PLUS_ONE__
+$53b0-$53d9 InflatedCaveOffsetAdjustTable
+$53da-$5405 InflatedCaveLineAddressTable
 $5406-$5805 AnimatedCharData
 $5806       LevelOffsetArray
 $5ee8-$5f27 ObjCodeFromScannedThisTickCodeTable
@@ -1996,11 +2004,12 @@ $6c30     Text_BonusLife
 $6c44     F1Text__Line5
 $6c6c     Text_PressButtonToPlay
 $6c58     Text__SpaceBarToResume
-$6c80  SetCellInInflatedWorld
-$6c9b  SetInflatedWorldOutputPtr
-$6cd7  __ProcessWorld__ClearCurrentCell
+$6c80  SetCellInInflatedCave
+$6c9b  SetInflatedCaveOutputPtr
+$6cb6  SetCell
+$6cd7  __ProcessCave__ClearCurrentCell
 $6d16  SetCellButPreserveSteelWall
-$6d21     SetCellButPreserveSteelWall__Finished
+$6d21   _Finished
 $6d54  ProcessHiddenOutbox
 $6d5f     ProcessHiddenOutbox__NotEnoughDiamonds
 $6d22  Explode3x3CellsDownOneRow
@@ -2009,7 +2018,7 @@ $6d91     Explode3x3Cells__Common
 $6d9b     Explode3x3Cells__SoundLoop
 $6dac     FromLeftClockwiseOffsetTable
 $6db0     FromDownClockwiseOffsetTable
-$6efb  __ProcessWorld__CreateScannedStationaryDiamond
+$6efb  __ProcessCave__CreateScannedStationaryDiamond
 $6fcc     AmoebaUpLeftRightDownOffsetTable
 $6fd0  ProcessAmoeba
 $6fda     __ProcessAmoeba__GreaterOrEqualTo200
@@ -2063,8 +2072,8 @@ $72f0  ProcessRockfordsAppearance
 $72fa     ProcessRockfordsAppearance__FindSequenceLoop
 $7302     ProcessRockfordsAppearance__SequenceNotMatched
 $730e     ProcessRockfordsAppearance__Exit
-$7311  RenderSteelWallInInflatedWorldHelper
-$7329  RenderSteelWallInInflatedWorld
+$7311  RenderSteelWallInInflatedCaveHelper
+$7329  RenderSteelWallInInflatedCave
 $7344  ProcessInAndOutBoxes
 $734e     __ProcessInAndOutBoxes__Door
 $735a     __ProcessInAndOutBoxes__Steel
@@ -2112,15 +2121,15 @@ $765f     __ChooseScrollDirection__YNoMatch
 $7672     __ChooseScrollDirection__YNext
 $76ad  Scroller
 $76b6     __Scroller__DoScroll
-$76c6     AdvanceWorldCurrentCellPtr
-$76cd  ResetWorldCurrentCellPtr
-$76db  FillInflatedWorldWithScrollingSteelWallChar
+$76c6     AdvanceCaveCurrentCellPtr
+$76cd  ResetCaveCurrentCellPtr
+$76db  FillInflatedCaveWithScrollingSteelWallChar
 $76f9  CoverLevel
 $771a     __CoverLevel__Outer
 $771c     __CoverLevel__Inner
 $7728     __CoverLevel__RandomNumber
 $773a     __CoverLevel__PointlessBranchTarget
-$774d     PadInflatedWorld
+$774d     PadInflatedCave
 $7760  RandomlyUncoverScreen
 $776b     __RandomlyUncoverScreen__GetRandomNumber
 $77a9  PlayRevealLevelSoundAndRedefineChar
@@ -2162,13 +2171,13 @@ $7b07   HandleMagicWallState
 $7b2b  GameIRQActions
 $7b30     __GameIRQActions__InBody
 $7b4a     __GameIRQActions__FlipBuffers
-$7b55     __GameIRQActions__CopyInflatedWorldToBackBuffer
-$7b58  CopyInflatedWorldSubsetToBackBuffer
+$7b55     __GameIRQActions__CopyInflatedCaveToBackBuffer
+$7b58  CopyInflatedCaveSubsetToBackBuffer
 $7cab     FillWithDirtAndRandomObjects
 $7cb2     FillWithDirtAndRandomObjects__NextRow
 $7cb6     FillWithDirtAndRandomObjects__NextColumn
 $7ccd-$7cd1 GameSpeedsForSublevelsArray
-$7cd2     WorldRowTransitionDelay
+$7cd2     CaveRowTransitionDelay
 $7cdf     ResetVoice1
 $7ce3     ResetVoice2
 $7ce7     ResetVoice3
@@ -2183,18 +2192,18 @@ $7d89     __HandleInGameKeys__RunStopPressed
 $7d9f     __HandleInGameKeys_F1Pressed
 $7da3  PreTickAmoebaProcessing
 $7dc3  DeathClick
-$7dd9  ProcessWorld
-$7de3     __ProcessWorld__BonusCave
-$7de7     __ProcessWorld__NotBonusCave
-$7dfc     __ProcessWorld__NewRow
-$7e00     __ProcessWorld__ProcessCurrentCell
-$7e0b     __ProcessWorld__ObjectHandler
-$7e15     __ProcessWorld__NoObjectHandler
-$7e1f     __ProcessWorld__TurnTrailerToBaseType
-$7e21     __ProcessWorld__NextCell
-$7e25     __ProcessWorld__BumpUpCellPtrHigh
-$7e27     __ProcessWorld__IncX
-$7e2f     __ProcessWorld__NextRow
+$7dd9  ProcessCave
+$7de3     __ProcessCave__BonusCave
+$7de7     __ProcessCave__NotBonusCave
+$7dfc     __ProcessCave__NewRow
+$7e00     __ProcessCave__ProcessCurrentCell
+$7e0b     __ProcessCave__ObjectHandler
+$7e15     __ProcessCave__NoObjectHandler
+$7e1f     __ProcessCave__TurnTrailerToBaseType
+$7e21     __ProcessCave__NextCell
+$7e25     __ProcessCave__BumpUpCellPtrHigh
+$7e27     __ProcessCave__IncX
+$7e2f     __ProcessCave__NextRow
 $7e3e     _NumTo3DigitDigits__Data_
 $7e41  NumTo3DigitDigits
 $7e45     NumTo3DigitDigits__ZeroDigit
@@ -2401,7 +2410,7 @@ $9848     ScoreChars
 $984e     CurrentPlayerInfoText
 $9862     TopLineBackup
 $987d     Voice1SIDRegsBuffer
-$9e00     MOVEDCopyInflatedWorldSubsetToBackBuffer
+$9e00     MOVEDCopyInflatedCaveSubsetToBackBuffer
 $00b7     RockfordMoveSucceededFlag
 $00b8     FireButtonStatus
 $2000-$23ff     CopiedTitleChar
@@ -2433,7 +2442,6 @@ $5ea8       DemoMoveData
 $5f28       BaseCharNoForObjectTable
 $5f68-$5f69     ObjHandlerVectorTable
 $60e8-$63e7 GameCharData
-$6cb6  SetCaveCellAndScreenToObject
 $6ced  PseudoRandom
 $6da5  ExplosionSIDVoiceTable
 $6db4  TestForRockfordOrAmoeba
