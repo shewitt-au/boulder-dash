@@ -2238,10 +2238,10 @@ $8034     __PostRunCaveActions__TimeLimitReached
 $8040     __PostRunCaveActions__CheckIfGameOver
 $8044     __PostRunCaveActions__GameOver
 $8052     __PostRunCaveActions__NotGameOver
-$806e     DecompressedLevelRowPointerArray
+$806e-$809d DecompressedLevelRowPointerArray
 $809e  ExecuteLevelDrawCommands__SetOutputPointer
 $80b2  ExecuteLevelDrawCommands__OutputSingle
-$80bc  ExecuteLevelDrawCommands__DrawLine__StepTable
+$80bc-$80cb ExecuteLevelDrawCommands__DrawLine__StepTable
 $80cc  ExecuteLevelDrawCommands__DrawLine
 $80da     __ExecuteLevelDrawCommands__DrawLine__Next
 $80f2     __ExecuteLevelDrawCommands__DrawLine__Finished
