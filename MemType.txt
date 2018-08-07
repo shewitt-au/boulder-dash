@@ -1911,11 +1911,11 @@ $00e6       RockfordCellsFromLeftOfScreen
 $00e7       FineScrollX
 $00e8       ScreenLeft
 $00e9       FineScrollDirX
-$00ea       ScrollDirectionX__00-StillOrLeft_ff-Right
+$00ea       ScrollDirectionX
 $00eb       FineScrollY
 $00ec       ScreenTop
 $00ed       FineScrollDirY
-$00ee       ScrollDirectionY__00-StillOrUp_ff-Down
+$00ee       ScrollDirectionY
 $00fb       LastKeyInScanRow0_ScannedMoreThanOnce
 $00fc       LastKeyInScanRow7_ScannedMoreThanOnce
 $00fd       LastKeyInScanRow0
@@ -1947,7 +1947,7 @@ $2413       BufferedLevel_BackgroundColour1
 $2414       BufferedLevel_BackgroundColour2
 $2415       BufferedLevel_ForegroundColour
 $2416       __unknown__
-$2417       __unknown__
+$2417       __unknown__2
 $2418       BufferedLevel_RandomObjectNumber1
 $2419       BufferedLevel_RandomObjectNumber2
 $241a       BufferedLevel_RandomObjectNumber3
@@ -1963,7 +1963,7 @@ $2423       BufferedLevel_Param3
 $2424       BufferedLevel_Param4
 $2425       BufferedLevel_Param5
 $3000-$30ff CopiedMusicData
-$4003       InflatedCave
+$4003-$4dc2 InflatedCave
 $4dc3       InflatedCave__END_PLUS_ONE__
 $53b0-$53d9 InflatedCaveOffsetAdjustTable
 $53da-$5405 InflatedCaveLineAddressTable
@@ -1972,11 +1972,9 @@ $5806       LevelOffsetArray
 $5ee8-$5f27 ObjCodeFromScannedThisTickCodeTable
 $5fe8-$60e7 MusicData
 $63e8   RockfordAnimationChars
-$66e8   Top2LinesAndBoulderDashLogo
-$67e8   Top2LinesAndBoulderDashLogo_pt2
-$68e8   Top2LinesAndBoulderDashLogo_pt3
-$69e0   Top2LinesAndBoulderDashLogo__Junk
-$69e8   LicenseText
+$66e8-$69df Top2LinesAndBoulderDashLogo
+$69e0-$69e7 Top2LinesAndBoulderDashLogo__Junk
+$69e8-$6acf LicenseText
 $6ad0   TimeBasedRandomNumber
 $6ae3   SetupColourRam
 $6ae8   _MarqueeLoop
@@ -2100,8 +2098,8 @@ $75d7     __StopScrollingAtEdges__ClipYDir
 $75df     __StopScrollingAtEdges__ScrolledFullyUp
 $75e3     __StopScrollingAtEdges__DirUp
 $75e7     __StopScrollingAtEdges__NotScrolledFullyDown
-$75eb     __StopScrollingAtEdges__ScrolledFullyUp
-$75ef     __StopScrollingAtEdges__DirUp
+$75eb     __StopScrollingAtEdges__ScrolledFullyUp2
+$75ef     __StopScrollingAtEdges__DirUp2
 $75f3     __StopScrollingAtEdges__ClipXDir
 $75fb     __StopScrollingAtEdges__ScrolledFullyRight
 $75ff     __StopScrollingAtEdges__DirLeft
@@ -2381,8 +2379,16 @@ $8a15  InitGameState
 $8a50     __InitGameState__OneTimeInit
 $8a80     __InitGameState__Exit
 $8a81  RasterSetTitleMode
+$8aa6     [<] IRQHandler
+$8aab     [>] IRQHandler
 $8ab2  NMIHandler
 $8ab3  Main
+$8adf     [<] NMIHandler
+$8ae4     [>] NMIHandler
+$8af8     [<] CopyInflatedCaveSubsetToBackBuffer
+$8afe     [>] CopyInflatedCaveSubsetToBackBuffer
+$8b12     [<] InflatedCave
+$8b16     [>] InflatedCave
 $8b2f     Main__BEGIN__Is_Level_Zero
 $8b33     Main__Level_Is_Zero
 $8b5a     Main__Level_Not_Zero
@@ -2410,7 +2416,7 @@ $9848     ScoreChars
 $984e     CurrentPlayerInfoText
 $9862     TopLineBackup
 $987d     Voice1SIDRegsBuffer
-$9e00     MOVEDCopyInflatedCaveSubsetToBackBuffer
+$9e00-$9f38 MOVEDCopyInflatedCaveSubsetToBackBuffer
 $00b7     RockfordMoveSucceededFlag
 $00b8     FireButtonStatus
 $2000-$23ff     CopiedTitleChar
