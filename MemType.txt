@@ -1967,7 +1967,8 @@ $5406-$5805 AnimatedCharData
 $5806-$582d LevelOffsetArray
 $5ee8-$5f27 ObjCodeFromScannedThisTickCodeTable
 $5fe8-$60e7 MusicData
-$63e8   RockfordAnimationChars
+$60e8-$63e7 GameCharData
+$63e8-$66e7 RockfordAnimationChars
 $66e8-$69df Top2LinesAndBoulderDashLogo
 $69e0-$69e7 Top2LinesAndBoulderDashLogo__Junk
 $69e8-$6acf LicenseText
@@ -2451,7 +2452,6 @@ $5e5b-$5ea7 CaveBonusTData
 $5ea8       DemoMoveData
 $5f28       BaseCharNoForObjectTable
 $5f68-$5f69     ObjHandlerVectorTable
-$60e8-$63e7 GameCharData
 $6ced  PseudoRandom
 $6da5  ExplosionSIDVoiceTable
 $6db4  TestForRockfordOrAmoeba
