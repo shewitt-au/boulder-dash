@@ -2336,7 +2336,7 @@ $86a0     __IRQHandler__ScanKeyboardRow0
 $86ac     __IRQHandler__KeyInScanRow0
 $86b0     __IRQHandler__KeyInScanRow0ScannedMoreThanOnce
 $86b4     __IRQHandler__KeyInScanRow0ScannedFirstTime
-$86b6     __IRQHanzdler__ScanKeyboardRow7
+$86b6     __IRQHandler__ScanKeyboardRow7
 $86c2     __IRQHandler__KeyInScanRow7
 $86c6     __IRQHandler__KeyInScanRow7ScannedMoreThanOnce
 $86ca     __IRQHandler__KeyInScanRow7ScannedFirstTime
