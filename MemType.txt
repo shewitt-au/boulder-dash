@@ -2079,13 +2079,13 @@ $7439  BlankLines0and4ofSpaceChars
 $7454  ExtraLifeFX
 $7460     __ExtraLifeFX__DoFX__
 $7487  ScrollingBGTick
-$749b     YScrollTable
-$74a7     XScrollTable
+$749b-$74a6 YScrollTable
+$74a7-$74b2 XScrollTable
 $74b3  CalcScrollOffsets_XIfNeeded_YIfNeeded
 $74bb  CalcXScrollOffsets_X_YIfNeeded
 $74cd     CalcYScrollOffsets_Y
-$74d8     XScrollVicCtl2Table
-$74dc     YScrollVicCtl1Table
+$74d8-$74db XScrollVicCtl2Table
+$74dc-$74df YScrollVicCtl1Table
 $74e0  ScheduleYScroll
 $74ef     __ScheduleYScroll__StartScroll
 $74f5     __ScheduleYScroll__ContinueScroll
@@ -2399,7 +2399,7 @@ $8b33     Main__Level_Is_Zero
 $8b5a     Main__Level_Not_Zero
 $8b7a     Main__ClearSpaceChar
 $8b7e     Main__ClearSpaceCharLoop
-$8b86     PartialSymbolTable
+$8b86-$8fff PartialSymbolTable
 $9800     MusicDataIndex
 $9801     MusicLoopedCount
 $9804     SeededRandTemp1
@@ -2450,10 +2450,10 @@ $5e1d-$5e5a CaveBonusSData
 $5e5b-$5ea7 CaveBonusTData
 
 $5ea8       DemoMoveData
-$5f28       BaseCharNoForObjectTable
-$5f68-$5f69     ObjHandlerVectorTable
+$5f28-$5f67 BaseCharNoForObjectTable
+$5f68-$5f69 ObjHandlerVectorTable
 $6ced  PseudoRandom
-$6da5  ExplosionSIDVoiceTable
+$6da5-$6dab ExplosionSIDVoiceTable
 $6db4  TestForRockfordOrAmoeba
 $6dc0     TestForRockfordOrAmoeba__Finished
 $6dc1  TestForExplosionByContactWithRockfordOrAmoeba
@@ -2463,7 +2463,7 @@ $6e05     ProcessFirefly__CantTurnLeft
 $6e19     ProcessFirefly__CantMoveStraightAhead
 $6e28  FallingDiamondSoundFX
 $6e2d     FallingDiamondSoundFX__Loop
-$6e4f     FallingBoulderSIDVoiceTable
+$6e4f-$6e55 FallingBoulderSIDVoiceTable
 $6e56  FallingBoulderSoundFX
 $6e5b     FallingBoulderSoundFX__Loop
 $6e65  TestIfObjectSlippery
@@ -2534,8 +2534,9 @@ $7ca0     _NotThisRandomObject
 $81c8     _CmdNotSingleObj
 $81d5     _CmdNotLine
 $81e2     _CmdNotFilledRect
-$8303     MusicNoteToFreqTableBase
-$8317     ActualMusicNoteToFreqTable
+$8317-$8378 MusicNoteToFreqTable
+$83d8 [r] MusicNoteToFreqTable
+$83e9 [r] MusicNoteToFreqTable
 $897a  InitAll
 $897e     _InitBlankTopLine
 $8986     _InitBlankRestOfScreen
