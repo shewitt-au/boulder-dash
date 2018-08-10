@@ -1343,10 +1343,6 @@ $7e66 '''
 '''
 $7e8e ""
 $7e98 ".NumTo3DigitZeroBasedString__Exit = .LevelSequenceAndBonusLevelStatusArray-1"
-$7e9d '''
-    $5806 : .LevelOffsetArray
-    $582e : .CaveAData
-'''
 $7edc "$"
 $7f06 "Set cave time limit."
 $7f1e "Set cave diamond quota."
@@ -2509,9 +2505,9 @@ $7210     TryToMoveRockford__Finished
 $7211  MoveRockfordIfPossible
 $7227     MoveRockfordIfPossible__FireNotPressed
 $7235     MoveRockfordIfPossible__CantMove
-$72b7  ExplodeToSpaceObjectSequenceTable
-$72c1     ExplodeToDiamondObjectSequenceTable
-$72cb     PreRockfordObjectSequenceTable
+$72b7-$72c0 ExplodeToSpaceObjectSequenceTable
+$72c1-$72ca ExplodeToDiamondObjectSequenceTable
+$72cb-$72d2 PreRockfordObjectSequenceTable
 $72d3  ProcessExplosion
 $72d9     ProcessExplosion__FindSequenceLoop
 $72e1     ProcessExplosion__SequenceNotMatched
