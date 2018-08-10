@@ -2216,7 +2216,9 @@ $7e66     LevelSequenceAndBonusLevelStatusArray
 $7e8e  BufferLevel
 $7e94     __BufferLevel__DoBuffer
 
+$7e9e [<] CaveAData
 $7ea0 [r] LevelOffsetArray
+$7ea5 [>] CaveAData
 $7ea7 [r] LevelOffsetArray
 
 $7eae     __BufferLevel__CopyElement
