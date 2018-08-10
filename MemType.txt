@@ -1968,7 +1968,7 @@ $4dc3       InflatedCave__END_PLUS_ONE__
 $53b0-$53d9 InflatedCaveOffsetAdjustTable
 $53da-$5405 InflatedCaveLineAddressTable
 $5406-$5805 AnimatedCharData
-$5806       LevelOffsetArray
+$5806-$582d LevelOffsetArray
 $5ee8-$5f27 ObjCodeFromScannedThisTickCodeTable
 $5fe8-$60e7 MusicData
 $63e8   RockfordAnimationChars
@@ -2062,7 +2062,9 @@ $7265     HandleJoystickForRockford__Right
 $7280     HandleJoystickForRockford__NotRight
 $7284     HandleJoystickForRockford__Left
 $7293     HandleJoystickForRockford__Finished
+
 $7294  ProcessRockford
+
 $7298     __ProcessRockford__DemoMode
 $729d     __ProcessRockford__NotDemoMode
 $72ad     __ProcessRockford__Process
@@ -2213,6 +2215,10 @@ $7e65     NumTo3DigitDigits__Exit
 $7e66     LevelSequenceAndBonusLevelStatusArray
 $7e8e  BufferLevel
 $7e94     __BufferLevel__DoBuffer
+
+$7ea0 [r] LevelOffsetArray
+$7ea7 [r] LevelOffsetArray
+
 $7eae     __BufferLevel__CopyElement
 $7eb8     __BufferLevel__InitRandomSeedAndColours
 $7edc  InitGameVariablesFromLevelData
