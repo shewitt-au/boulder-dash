@@ -1499,10 +1499,6 @@ $8244 '''
     1.player..1.joystick
     .cave:.a..level:.1..
 '''
-$824e v"..by.peter.liepa...."
-$8265 v"..with.chris.grey.."
-$827c v"press.button.to.play"
-$8296 v".plyr.1......plyr.2."
 $82db v".cave?.a..level?.1.."
 $82f2 v"1.player..1.joystick"
 $8379 v'''
@@ -1987,8 +1983,8 @@ $6c08-$6c1b Pre_level_Marquee_Text
 $6c1c-$6c2f Text_OutOfTime
 $6c30-$6c43 Text_BonusLife
 $6c44-$6c57 F1Text__Line5
-$6c6c-$6c6b Text_PressButtonToPlay
-$6c58-$6c7f Text__SpaceBarToResume
+$6c58-$6c6b Text__SpaceBarToResume
+$6c6c-$6c7f Text_PressButtonToPlay
 $6c80  SetCellInInflatedCave
 $6c9b  SetInflatedCaveOutputPtr
 $6cb6  SetCell
