@@ -1313,7 +1313,6 @@ $7d02 '''
 '''
 $7d19 ""
 $7d2b "While paused we spin in this function until we're unpaused."
-$7d2e ".spacebar.to.resume."
 $7d6b ""
 $7d71 "Pause game."
 $7d89 "Suicide."
@@ -1355,17 +1354,10 @@ $7f91 '''
     Why all the logic for enabling animations are not part of the level data is beyond me.
 '''
 $7f9e ""
-$7f9e v".g.a.m.e...o.v.e.r.."
 $7fad ""
 $7fce ""
-$7fd6 '''
-    Set top line text to:
-    ....out.of.time.....
-'''
 $7fe4 "Restore top line text."
 $8006 ""
-$8011 ".b.o.n.u.s..l.i.f.e."
-$8022 "$094e = .CurrentPlayerInfoText"
 $802e ""
 $8038 '''
     Without this the timer never display 000.
@@ -1984,19 +1976,19 @@ $6b69   ReadFireButtonCurrentPlayer
 $6b6b   ReadFireButtonPlayerInA
 $6b74   ReadFireButtonPort1
 $6b77   _StoreFireButtonBit
-$6b7c     Text_ByPeterLiepa
-$6b90     Text__WithChrisGrey
-$6ba4     F1Text__Line4
-$6bb8     Text_Plyr1Ply2
-$6bcc     Text_LastScores
-$6be0     Text_HighScores
-$6bf4     Text_GameOver
-$6c08     Pre_level_Marquee_Text
-$6c1c     Text_OutOfTime
-$6c30     Text_BonusLife
-$6c44     F1Text__Line5
-$6c6c     Text_PressButtonToPlay
-$6c58     Text__SpaceBarToResume
+$6b7c-$6b8f Text_ByPeterLiepa
+$6b90-$6ba3 Text__WithChrisGrey
+$6ba4-$6bb7 F1Text__Line4
+$6bb8-$6bcb Text_Plyr1Ply2
+$6bcc-$6bdf Text_LastScores
+$6be0-$6bf3 Text_HighScores
+$6bf4-$6c07 Text_GameOver
+$6c08-$6c1b Pre_level_Marquee_Text
+$6c1c-$6c2f Text_OutOfTime
+$6c30-$6c43 Text_BonusLife
+$6c44-$6c57 F1Text__Line5
+$6c6c-$6c6b Text_PressButtonToPlay
+$6c58-$6c7f Text__SpaceBarToResume
 $6c80  SetCellInInflatedCave
 $6c9b  SetInflatedCaveOutputPtr
 $6cb6  SetCell
@@ -2036,6 +2028,8 @@ $70f0     GameSecondTickWithAmoebaProcessing__Exit
 $70f1  FlashingEntryBoxSecondTick
 $70f5     FlashingEntryBoxSecondTick__Birth
 $7104     FlashingEntryBoxSecondTick__Exit
+$7105 [<] CurrentPlayerScoresText
+$7109 [>] CurrentPlayerScoresText
 $7105  SetTopLineToScore
 $7111  SubSecondTick
 $7119     SubSecondTick__OneGameSecondPassed
@@ -2057,9 +2051,7 @@ $7265     HandleJoystickForRockford__Right
 $7280     HandleJoystickForRockford__NotRight
 $7284     HandleJoystickForRockford__Left
 $7293     HandleJoystickForRockford__Finished
-
 $7294  ProcessRockford
-
 $7298     __ProcessRockford__DemoMode
 $729d     __ProcessRockford__NotDemoMode
 $72ad     __ProcessRockford__Process
@@ -2182,6 +2174,10 @@ $7d03  Delay
 $7d0c  FourDelays
 $7d19  DelaySpaceKeyAborts
 $7d2b  PauseLoop
+$7d2e [<] Text__SpaceBarToResume
+$7d32 [>] Text__SpaceBarToResume
+$7d49 [<] TopLineBackup
+$7d4d [>] TopLineBackup
 $7d6b  HandleInGameKeys
 $7d71     __HandleInGameKeys__SpacePressed
 $7d89     __HandleInGameKeys__RunStopPressed
@@ -2226,6 +2222,8 @@ $7f89     __InitGameVariablesFromLevelData__NotCaveB
 $7f97     __InitGameVariablesFromLevelData__NotBonusCave
 $7f9b     __InitGameVariablesFromLevelData__BonusCave
 $7f9e  SetTopLineTextToGameOverAndDelay
+$7f9e [<] Text_GameOver
+$7fa2 [>] Text_GameOver
 $7fad  WaitForDelayOrNextPlayersButton
 $7faf     __WaitForDelayOrNextPlayersButton__OuterDelayLoop
 $7fb1     __WaitForDelayOrNextPlayersButton__InnerDelayLoop
@@ -2235,7 +2233,15 @@ $7fbe     __WaitForDelayOrNextPlayersButton__ReadButton
 $7fc3     __WaitForDelayOrNextPlayersButton__Pressed
 $7fc7     __WaitForDelayOrNextPlayersButton__NotPressed
 $7fce  OutOfTimeLoop
+$7fd6 [<] Text_OutOfTime
+$7fda [>] Text_OutOfTime
+$7fe4 [<] TopLineBackup
+$7fe8 [>] TopLineBackup
 $8006     ProcessBonusLevelAndInterLevelInfoDisplay
+$8011 [<] Text_BonusLife
+$8015 [>] Text_BonusLife
+$8022 [<] CurrentPlayerInfoText
+$8026 [>] CurrentPlayerInfoText
 $802e  PostCaveRunActions
 $8034     __PostRunCaveActions__TimeLimitReached
 $8040     __PostRunCaveActions__CheckIfGameOver
@@ -2319,6 +2325,8 @@ $8584     __TitleScreenLoop__F1NotPressed
 $859b  RunTitleScreen
 $85d4     __RunTitleScreen__DemoMode
 $85db     __RunTitleScreen__GameMode
+$85f6 [<] CurrentPlayerInfoText
+$85fa [>] CurrentPlayerInfoText
 $860b     RastIntTitleModeVICRegs
 $8606     TitleModeVICColourRegs
 $8613-$861a RastIntGameModeVICRegs
