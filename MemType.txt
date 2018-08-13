@@ -2539,7 +2539,9 @@ $81d5     _CmdNotLine
 $81e2     _CmdNotFilledRect
 $8317-$8378 MusicNoteToFreqTable
 $83d8 [r] MusicNoteToFreqTable
+$83de [r] MusicNoteToFreqTable
 $83e9 [r] MusicNoteToFreqTable
+$83ef [r] MusicNoteToFreqTable
 $897a  InitAll
 $897e     _InitBlankTopLine
 $8986     _InitBlankRestOfScreen
