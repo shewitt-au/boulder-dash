@@ -668,8 +668,9 @@ $5f68 v'''
 '''
 $5fe8 v'''
     MusicData ($5fe8-$60e7) is copied to CopiedMusicData ($3000-$30ff).
-    MusicData and GameCharData (below) are copied together to $3000 by InitAll.
-    The music data occupies exactly 256 bytes, and the charset 768 (1k in total).
+    The copied music data is never used, it's copied just to simplify the
+    copying of the GameCharData. The music data occupies exactly 256 bytes,
+    and the charset 768 (1k in total).
     '''
 $60e8 v'''
     GameCharData ($60e8-$63e7) copied to GameTiles ($3100-$33ff).
