@@ -1736,7 +1736,8 @@ $89d4 '''
 $89e3 "Set all sprite pointers in both tilemaps to $3780."
 $89f5 '''
     Position the sprites.
-    NOTE: Note sprite Y position is raster line minus 1.
+    NOTE: To get a sprite to display on raster line y
+          set its y-coordinate to y-1.
 '''
 $8a15 ""
 $8a27 "X=0"
